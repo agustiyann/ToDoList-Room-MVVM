@@ -18,6 +18,7 @@ import com.masscode.simpletodolist.viewmodel.HomeViewModel
 import com.masscode.simpletodolist.viewmodel.HomeViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 import com.masscode.simpletodolist.viewmodel.TodoViewModelFactory
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,7 +53,7 @@ class HomeFragment : Fragment() {
         adapter = ListAdapter(viewModel)
 
         val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("EEEE, dd-MM-yyyy")
+        val formatter = SimpleDateFormat("EEEE, MMM dd yyyy")
         val currentDate = formatter.format(date)
 
         val vmFactory = HomeViewModelFactory(currentDate)
@@ -83,7 +84,11 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerview() {
         val recyclerView = binding.rvTodo
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.itemAnimator = FadeInUpAnimator().apply {
+            addDuration = 100
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -115,7 +120,7 @@ class HomeFragment : Fragment() {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Delete Checked Lists")
             builder.setMessage("All checked lists will be deleted. Are you sure?")
-            builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            builder.setPositiveButton("Yes") { _, _ ->
                 viewModel.deleteSelected()
 
                 Toast.makeText(
@@ -124,7 +129,7 @@ class HomeFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            builder.setNegativeButton(android.R.string.no) { dialog, _ ->
+            builder.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
             }
             builder.show()
@@ -134,7 +139,7 @@ class HomeFragment : Fragment() {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Clear Lists")
             builder.setMessage("All lists will be deleted. Are you sure?")
-            builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            builder.setPositiveButton("Yes") { _, _ ->
                 viewModel.clearTodos()
 
                 Toast.makeText(
@@ -143,7 +148,7 @@ class HomeFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-            builder.setNegativeButton(android.R.string.no) { dialog, _ ->
+            builder.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
             }
             builder.show()

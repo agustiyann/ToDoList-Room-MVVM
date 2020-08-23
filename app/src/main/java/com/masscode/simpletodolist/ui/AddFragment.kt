@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import com.masscode.simpletodolist.databinding.FragmentAddBinding
+import com.masscode.simpletodolist.utils.hideKeyboard
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 import com.masscode.simpletodolist.viewmodel.TodoViewModelFactory
 
@@ -41,6 +42,7 @@ class AddFragment : Fragment() {
 
             if (title.trim().isNotEmpty() && description.trim().isNotEmpty()) {
                 todoViewModel.addTodo(title, description)
+                hideKeyboard(requireActivity())
                 findNavController().popBackStack()
             } else {
                 Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
