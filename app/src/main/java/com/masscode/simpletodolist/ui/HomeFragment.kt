@@ -2,6 +2,7 @@ package com.masscode.simpletodolist.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,9 +15,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masscode.simpletodolist.R
+import com.masscode.simpletodolist.adapter.ListAdapter
 
 import com.masscode.simpletodolist.databinding.FragmentHomeBinding
 import com.masscode.simpletodolist.adapter.TodoAdapter
+import com.masscode.simpletodolist.database.Todo
 import com.masscode.simpletodolist.viewmodel.HomeViewModel
 import com.masscode.simpletodolist.viewmodel.HomeViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
@@ -35,6 +38,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: TodoViewModel
 
+    private lateinit var adapter: ListAdapter
+
     @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +56,8 @@ class HomeFragment : Fragment() {
         ).get(TodoViewModel::class.java)
 
         mLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        mAdapter = TodoAdapter(viewModel)
+//        mAdapter = TodoAdapter(viewModel)
+        adapter = ListAdapter(viewModel)
 
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat("EEEE, dd-MM-yyyy")
@@ -60,18 +66,22 @@ class HomeFragment : Fragment() {
         val vmFactory = HomeViewModelFactory(currentDate)
         binding.viewModel = ViewModelProvider(this, vmFactory).get(HomeViewModel::class.java)
 
-        binding.rvTodo.apply {
-            setHasFixedSize(true)
-            layoutManager = mLayoutManager
-            adapter = mAdapter
-        }
+        // Setup RecyclerView
+        setupRecyclerview()
+
+//        binding.rvTodo.apply {
+//            setHasFixedSize(true)
+//            layoutManager = mLayoutManager
+//            adapter = mAdapter
+//        }
 
         binding.addTaskBtn.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
         )
 
         viewModel.todos.observe(requireActivity(), Observer { list ->
-            mAdapter.submitList(list.toMutableList())
+//            mAdapter.submitList(list.toMutableList())
+            adapter.setData(list)
 
             if (list.isEmpty()) {
                 binding.noDataImage.visibility = View.VISIBLE
@@ -83,6 +93,12 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    private fun setupRecyclerview() {
+        val recyclerView = binding.rvTodo
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -115,8 +131,7 @@ class HomeFragment : Fragment() {
             builder.setTitle("Delete Checked Lists")
             builder.setMessage("All checked lists will be deleted. Are you sure?")
             builder.setPositiveButton(android.R.string.yes) { _, _ ->
-                viewModel.deleteSelected()
-                mAdapter.notifyDataSetChanged()
+                adapter.deleteSelectedItems()
 
                 Toast.makeText(
                     requireContext(),

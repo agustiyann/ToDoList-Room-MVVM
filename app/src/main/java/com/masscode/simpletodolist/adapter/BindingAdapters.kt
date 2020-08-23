@@ -1,0 +1,5 @@
+package com.masscode.simpletodolist.adapter
+
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
