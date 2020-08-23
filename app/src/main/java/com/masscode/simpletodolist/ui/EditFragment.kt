@@ -1,15 +1,13 @@
 package com.masscode.simpletodolist.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-
-import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.database.Todo
 import com.masscode.simpletodolist.databinding.FragmentEditBinding
 import com.masscode.simpletodolist.viewmodel.EditViewModel
@@ -59,11 +57,8 @@ class EditFragment : Fragment() {
                 todoViewModel.updateTodo(id, updatedTitle, updatedDesc, isChecked)
                 findNavController().popBackStack()
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "All fields must be inputted!!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 

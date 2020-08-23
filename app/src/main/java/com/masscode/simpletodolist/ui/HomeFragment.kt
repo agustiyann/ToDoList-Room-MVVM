@@ -2,7 +2,6 @@ package com.masscode.simpletodolist.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,16 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.adapter.ListAdapter
-
 import com.masscode.simpletodolist.databinding.FragmentHomeBinding
-import com.masscode.simpletodolist.adapter.TodoAdapter
-import com.masscode.simpletodolist.database.Todo
 import com.masscode.simpletodolist.viewmodel.HomeViewModel
 import com.masscode.simpletodolist.viewmodel.HomeViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
@@ -33,7 +27,6 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var mAdapter: TodoAdapter
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
     private lateinit var viewModel: TodoViewModel
@@ -56,7 +49,6 @@ class HomeFragment : Fragment() {
         ).get(TodoViewModel::class.java)
 
         mLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-//        mAdapter = TodoAdapter(viewModel)
         adapter = ListAdapter(viewModel)
 
         val date = Calendar.getInstance().time
@@ -69,18 +61,11 @@ class HomeFragment : Fragment() {
         // Setup RecyclerView
         setupRecyclerview()
 
-//        binding.rvTodo.apply {
-//            setHasFixedSize(true)
-//            layoutManager = mLayoutManager
-//            adapter = mAdapter
-//        }
-
         binding.addTaskBtn.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
         )
 
         viewModel.todos.observe(requireActivity(), Observer { list ->
-//            mAdapter.submitList(list.toMutableList())
             adapter.setData(list)
 
             if (list.isEmpty()) {
@@ -131,7 +116,7 @@ class HomeFragment : Fragment() {
             builder.setTitle("Delete Checked Lists")
             builder.setMessage("All checked lists will be deleted. Are you sure?")
             builder.setPositiveButton(android.R.string.yes) { _, _ ->
-                adapter.deleteSelectedItems()
+                viewModel.deleteSelected()
 
                 Toast.makeText(
                     requireContext(),
@@ -151,7 +136,6 @@ class HomeFragment : Fragment() {
             builder.setMessage("All lists will be deleted. Are you sure?")
             builder.setPositiveButton(android.R.string.yes) { _, _ ->
                 viewModel.clearTodos()
-                mAdapter.notifyDataSetChanged()
 
                 Toast.makeText(
                     requireContext(),

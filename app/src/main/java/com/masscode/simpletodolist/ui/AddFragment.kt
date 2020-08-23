@@ -43,11 +43,8 @@ class AddFragment : Fragment() {
                 todoViewModel.addTodo(title, description)
                 findNavController().popBackStack()
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "All fields must be inputted!!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 

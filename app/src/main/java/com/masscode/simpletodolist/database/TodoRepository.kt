@@ -8,10 +8,6 @@ class TodoRepository(private val TodoDAO: TodoDAO) {
         TodoDAO.insertTodo(todo)
     }
 
-    fun delete(todo: Todo) {
-        TodoDAO.deleteTodo(todo)
-    }
-
     fun update(todo: Todo) {
         TodoDAO.updateTodo(todo)
     }
