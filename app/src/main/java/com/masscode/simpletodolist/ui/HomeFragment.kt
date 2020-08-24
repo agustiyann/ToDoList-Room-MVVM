@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
 
         val vmFactory = HomeViewModelFactory(currentDate)
         binding.viewModel = ViewModelProvider(this, vmFactory).get(HomeViewModel::class.java)
+        binding.lifecycleOwner = this
 
         // Setup RecyclerView
         setupRecyclerview()
@@ -71,8 +72,10 @@ class HomeFragment : Fragment() {
 
             if (list.isEmpty()) {
                 binding.noDataImage.visibility = View.VISIBLE
+                binding.noDataText.visibility = View.VISIBLE
             } else {
                 binding.noDataImage.visibility = View.GONE
+                binding.noDataText.visibility = View.GONE
             }
         })
 

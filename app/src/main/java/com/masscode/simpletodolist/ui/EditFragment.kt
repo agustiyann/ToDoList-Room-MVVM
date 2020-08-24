@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.masscode.simpletodolist.databinding.FragmentEditBinding
+import com.masscode.simpletodolist.utils.hideKeyboard
 import com.masscode.simpletodolist.viewmodel.EditViewModel
 import com.masscode.simpletodolist.viewmodel.EditViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
@@ -33,6 +34,7 @@ class EditFragment : Fragment() {
 
         val vmFactory = EditViewModelFactory(todo!!)
         binding.viewModel = ViewModelProvider(this, vmFactory).get(EditViewModel::class.java)
+        binding.lifecycleOwner = this
 
         todoViewModel = ViewModelProvider(
             requireActivity(),
@@ -47,6 +49,7 @@ class EditFragment : Fragment() {
 
             if (updatedTitle.trim().isNotEmpty() && updatedDesc.trim().isNotEmpty()) {
                 todoViewModel.updateTodo(todo.id, updatedTitle, updatedDesc, todo.checked)
+                hideKeyboard(requireActivity())
                 findNavController().popBackStack()
             } else {
                 Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)

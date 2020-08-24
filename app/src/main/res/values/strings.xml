@@ -6,4 +6,5 @@
     <string name="empty">empty</string>
     <string name="delete">delete</string>
     <string name="edit_task">Edit Task</string>
+    <string name="no_data">No Data</string>
 </resources>
