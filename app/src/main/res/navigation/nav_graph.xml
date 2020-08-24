@@ -28,18 +28,8 @@
         android:label="EditFragment"
         tools:layout="@layout/fragment_edit">
         <argument
-            android:name="id"
-            app:argType="integer" />
-        <argument
-            android:name="title"
-            app:argType="string"
+            android:name="todo"
+            app:argType="com.masscode.simpletodolist.database.Todo"
             app:nullable="true" />
-        <argument
-            android:name="desc"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="checked"
-            app:argType="boolean" />
     </fragment>
 </navigation>

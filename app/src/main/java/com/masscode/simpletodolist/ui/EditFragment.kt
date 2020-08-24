@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.masscode.simpletodolist.database.Todo
 import com.masscode.simpletodolist.databinding.FragmentEditBinding
 import com.masscode.simpletodolist.viewmodel.EditViewModel
 import com.masscode.simpletodolist.viewmodel.EditViewModelFactory
@@ -30,16 +29,9 @@ class EditFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentEditBinding.inflate(inflater)
 
-        val todo: Todo
+        val todo = EditFragmentArgs.fromBundle(requireArguments()).todo
 
-        val id = EditFragmentArgs.fromBundle(requireArguments()).id
-        val title = EditFragmentArgs.fromBundle(requireArguments()).title
-        val description = EditFragmentArgs.fromBundle(requireArguments()).desc
-        val isChecked = EditFragmentArgs.fromBundle(requireArguments()).checked
-
-        todo = Todo(id, title!!, description!!, isChecked)
-
-        val vmFactory = EditViewModelFactory(todo)
+        val vmFactory = EditViewModelFactory(todo!!)
         binding.viewModel = ViewModelProvider(this, vmFactory).get(EditViewModel::class.java)
 
         todoViewModel = ViewModelProvider(
@@ -54,7 +46,7 @@ class EditFragment : Fragment() {
             val updatedDesc = binding.description.text.toString()
 
             if (updatedTitle.trim().isNotEmpty() && updatedDesc.trim().isNotEmpty()) {
-                todoViewModel.updateTodo(id, updatedTitle, updatedDesc, isChecked)
+                todoViewModel.updateTodo(todo.id, updatedTitle, updatedDesc, todo.checked)
                 findNavController().popBackStack()
             } else {
                 Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)

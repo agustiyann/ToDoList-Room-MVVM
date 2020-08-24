@@ -3,9 +3,12 @@ package com.masscode.simpletodolist.adapter
 import android.graphics.Paint
 import android.util.Log
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import com.masscode.simpletodolist.database.Todo
+import com.masscode.simpletodolist.ui.HomeFragmentDirections
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 
 @BindingAdapter(value = ["todo", "vm"])
@@ -40,5 +43,13 @@ fun isStriked(textView: TextView, isCheck: Boolean) {
     } else {
         textView.paintFlags =
             textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+    }
+}
+
+@BindingAdapter("android:goToEdit")
+fun goToEditFragment(imageView: ImageView, todo: Todo) {
+    imageView.setOnClickListener { view ->
+        view.findNavController()
+            .navigate(HomeFragmentDirections.actionHomeFragmentToEditFragment(todo))
     }
 }
