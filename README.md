@@ -1,5 +1,5 @@
 ## Demo
-<img src="demo/demo-todo.gif" width="300" />
+<img src="demo/preview.gif" width="300" />
 
 ## Resources
 - ViewModel
