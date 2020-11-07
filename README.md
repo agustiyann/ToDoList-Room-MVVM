@@ -1,6 +1,7 @@
 ## ToDoList Room MVVM
 [![GitHub license](https://img.shields.io/github/license/agustiyann/ToDoList-Room-MVVM)](https://github.com/agustiyann/ToDoList-Room-MVVM/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/agustiyann/ToDoList-Room-MVVM)](https://github.com/agustiyann/ToDoList-Room-MVVM/issues)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/agustiyann/ToDoList-Room-MVVM/Android%20CI?logo=github)
+[![GitHub issues](https://img.shields.io/github/issues/agustiyann/ToDoList-Room-MVVM?color=critical)](https://github.com/agustiyann/ToDoList-Room-MVVM/issues)
 
 ## Preview
 <img src="demo/preview.gif" width="300" />
