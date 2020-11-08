@@ -4,19 +4,19 @@ class TodoRepository(private val TodoDAO: TodoDAO) {
 
     val allTodos = TodoDAO.loadTodos()
 
-    fun insert(todo: Todo) {
+    suspend fun insert(todo: Todo) {
         TodoDAO.insertTodo(todo)
     }
 
-    fun update(todo: Todo) {
+    suspend fun update(todo: Todo) {
         TodoDAO.updateTodo(todo)
     }
 
-    fun deleteSelectedTodos() {
+    suspend fun deleteSelectedTodos() {
         TodoDAO.deleteSelectedTodos()
     }
 
-    fun clearTodos() {
+    suspend fun clearTodos() {
         TodoDAO.clearTodos()
     }
 

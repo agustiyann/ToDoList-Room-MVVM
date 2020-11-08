@@ -9,17 +9,17 @@ interface TodoDAO {
     fun loadTodos(): LiveData<List<Todo>>
 
     @Insert
-    fun insertTodo(todo: Todo)
+    suspend fun insertTodo(todo: Todo)
 
     @Update
-    fun updateTodo(todo: Todo)
+    suspend fun updateTodo(todo: Todo)
 
     @Delete
-    fun deleteTodo(todo: Todo)
+    suspend fun deleteTodo(todo: Todo)
 
     @Query("DELETE FROM todo WHERE checked = 1")
-    fun deleteSelectedTodos()
+    suspend fun deleteSelectedTodos()
 
     @Query("DELETE FROM todo")
-    fun clearTodos()
+    suspend fun clearTodos()
 }
