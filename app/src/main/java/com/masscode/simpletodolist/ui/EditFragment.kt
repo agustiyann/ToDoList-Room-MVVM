@@ -49,7 +49,7 @@ class EditFragment : Fragment() {
 
             if (updatedTitle.trim().isNotEmpty() && updatedDesc.trim().isNotEmpty()) {
                 todoViewModel.updateTodo(todo.id, updatedTitle, updatedDesc, todo.checked)
-                hideKeyboard(requireActivity())
+                activity?.hideKeyboard()
                 findNavController().popBackStack()
             } else {
                 Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
