@@ -58,6 +58,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
+    implementation "jp.wasabeef:recyclerview-animators:$rv_animator_version"
+    implementation "com.google.android.material:material:$material_version"
 }

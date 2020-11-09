@@ -7,4 +7,9 @@
     <string name="delete">delete</string>
     <string name="edit_task">Edit Task</string>
     <string name="no_data">No Data</string>
+    <string name="add_task">Add Task</string>
+    <string name="title">Title</string>
+    <string name="description">Description..</string>
+    <string name="submit">Submit</string>
+    <string name="update">Update</string>
 </resources>

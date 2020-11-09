@@ -6,7 +6,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -67,7 +66,7 @@ class HomeFragment : Fragment() {
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
         )
 
-        viewModel.todos.observe(requireActivity(), Observer { list ->
+        viewModel.todos.observe(viewLifecycleOwner, { list ->
             adapter.setData(list)
 
             if (list.isEmpty()) {
