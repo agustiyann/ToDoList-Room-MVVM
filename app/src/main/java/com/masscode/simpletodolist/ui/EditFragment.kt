@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.databinding.FragmentEditBinding
 import com.masscode.simpletodolist.utils.hideKeyboard
+import com.masscode.simpletodolist.utils.shortToast
 import com.masscode.simpletodolist.viewmodel.EditViewModel
 import com.masscode.simpletodolist.viewmodel.EditViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
@@ -47,13 +48,12 @@ class EditFragment : Fragment() {
             val updatedTitle = binding.title.text.toString()
             val updatedDesc = binding.description.text.toString()
 
-            if (updatedTitle.trim().isNotEmpty() && updatedDesc.trim().isNotEmpty()) {
+            if (updatedTitle.isNotBlank() && updatedDesc.isNotBlank()) {
                 todoViewModel.updateTodo(todo.id, updatedTitle, updatedDesc, todo.checked)
                 activity?.hideKeyboard()
                 findNavController().popBackStack()
             } else {
-                Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
-                    .show()
+                context?.shortToast(getString(R.string.fill_all_fields))
             }
         }
 
