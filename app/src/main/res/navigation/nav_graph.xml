@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/editFragment"
         android:name="com.masscode.simpletodolist.ui.EditFragment"
-        android:label="EditFragment"
+        android:label="@string/edit_task"
         tools:layout="@layout/fragment_edit">
         <argument
             android:name="todo"
