@@ -12,4 +12,5 @@
     <string name="description">Description..</string>
     <string name="submit">Submit</string>
     <string name="update">Update</string>
+    <string name="fill_all_fields">Please fill out all fields</string>
 </resources>

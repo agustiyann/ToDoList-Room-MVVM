@@ -3,7 +3,6 @@ package com.masscode.simpletodolist.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.adapter.ListAdapter
 import com.masscode.simpletodolist.databinding.FragmentHomeBinding
+import com.masscode.simpletodolist.utils.shortToast
 import com.masscode.simpletodolist.viewmodel.HomeViewModel
 import com.masscode.simpletodolist.viewmodel.HomeViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
@@ -125,11 +125,7 @@ class HomeFragment : Fragment() {
             builder.setPositiveButton("Yes") { _, _ ->
                 viewModel.deleteSelected()
 
-                Toast.makeText(
-                    requireContext(),
-                    "All checked lists have been deleted.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                context?.shortToast("All checked lists have been deleted.")
             }
             builder.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
@@ -144,11 +140,7 @@ class HomeFragment : Fragment() {
             builder.setPositiveButton("Yes") { _, _ ->
                 viewModel.clearTodos()
 
-                Toast.makeText(
-                    requireContext(),
-                    "All lists have been deleted. Add your To Do!",
-                    Toast.LENGTH_LONG
-                ).show()
+                context?.shortToast("All lists have been deleted. Add your To Do!")
             }
             builder.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
