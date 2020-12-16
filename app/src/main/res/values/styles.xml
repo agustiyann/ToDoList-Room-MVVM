@@ -20,4 +20,9 @@
         <item name="android:textColor">@color/colorText</item>
     </style>
 
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorText</item>
+    </style>
+
 </resources>
