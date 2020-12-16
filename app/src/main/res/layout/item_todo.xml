@@ -22,10 +22,13 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorCard"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
             app:cardMaxElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:strokeColor="@color/colorBorder"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -38,6 +41,7 @@
                     vm="@{viewModel}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorText"
                     android:text="@null"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,18 +62,18 @@
 
                 <TextView
                     android:id="@+id/title"
+                    style="@style/textTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:strikeThrough="@{todo.checked}"
                     android:text="@{todo.title}"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/checkbox_todo" />
 
                 <TextView
                     android:id="@+id/description"
+                    style="@style/textBase"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

@@ -10,4 +10,14 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="textTitle">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textBase">
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
 </resources>
