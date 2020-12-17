@@ -14,23 +14,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBackground"
         tools:context=".ui.EditFragment">
 
         <TextView
             android:id="@+id/textView"
+            style="@style/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/edit_task"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_title"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,13 +46,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
-                android:text="@{viewModel.todo.title}" />
+                android:text="@{viewModel.todo.title}"
+                android:textColor="@color/colorText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_description"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
@@ -69,7 +70,8 @@
                 android:layout_height="match_parent"
                 android:gravity="start"
                 android:inputType="textCapSentences|textMultiLine"
-                android:text="@{viewModel.todo.description}" />
+                android:text="@{viewModel.todo.description}"
+                android:textColor="@color/colorText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
