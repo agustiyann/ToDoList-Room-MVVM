@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater)
 
@@ -119,34 +119,33 @@ class HomeFragment : Fragment() {
     private fun showDialog(delete: String) {
         if (delete == "selected") {
 
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Delete Checked Lists")
-            builder.setMessage("All checked lists will be deleted. Are you sure?")
-            builder.setPositiveButton("Yes") { _, _ ->
-                viewModel.deleteSelected()
+            AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
+                setTitle("Delete Checked Lists")
+                setMessage("All checked lists will be deleted. Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+                    viewModel.deleteSelected()
 
-                context?.shortToast("All checked lists have been deleted.")
-            }
-            builder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-            builder.show()
+                    context.shortToast("All checked lists have been deleted.")
+                }
+                setNegativeButton("No") { dialog, _ ->
+                    dialog.cancel()
+                }
+            }.create().show()
 
         } else if (delete == "all") {
 
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Clear Lists")
-            builder.setMessage("All lists will be deleted. Are you sure?")
-            builder.setPositiveButton("Yes") { _, _ ->
-                viewModel.clearTodos()
+            AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
+                setTitle("Clear Lists")
+                setMessage("All lists will be deleted. Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+                    viewModel.clearTodos()
 
-                context?.shortToast("All lists have been deleted. Add your To Do!")
-            }
-            builder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-            builder.show()
-
+                    context.shortToast("All lists have been deleted. Add your To Do!")
+                }
+                setNegativeButton("No") { dialog, _ ->
+                    dialog.cancel()
+                }
+            }.create().show()
         }
     }
 
