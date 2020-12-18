@@ -1,4 +1,4 @@
-package com.masscode.simpletodolist.ui
+package com.masscode.simpletodolist.ui.edit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,6 @@ import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.databinding.FragmentEditBinding
 import com.masscode.simpletodolist.utils.hideKeyboard
 import com.masscode.simpletodolist.utils.shortToast
-import com.masscode.simpletodolist.viewmodel.EditViewModel
-import com.masscode.simpletodolist.viewmodel.EditViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 import com.masscode.simpletodolist.viewmodel.TodoViewModelFactory
 

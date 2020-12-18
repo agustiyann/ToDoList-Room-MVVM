@@ -1,4 +1,4 @@
-package com.masscode.simpletodolist.viewmodel
+package com.masscode.simpletodolist.ui.edit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.masscode.simpletodolist.ui
+package com.masscode.simpletodolist.ui.add
 
 import android.os.Bundle
 import android.view.LayoutInflater

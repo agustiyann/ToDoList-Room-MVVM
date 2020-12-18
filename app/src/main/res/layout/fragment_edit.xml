@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.masscode.simpletodolist.viewmodel.EditViewModel" />
+            type="com.masscode.simpletodolist.ui.edit.EditViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        tools:context=".ui.EditFragment">
+        tools:context=".ui.edit.EditFragment">
 
         <TextView
             android:id="@+id/textView"

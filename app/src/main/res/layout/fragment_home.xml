@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.masscode.simpletodolist.viewmodel.HomeViewModel" />
+            type="com.masscode.simpletodolist.ui.home.HomeViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        tools:context=".ui.HomeFragment">
+        tools:context=".ui.home.HomeFragment">
 
         <TextView
             android:id="@+id/date"

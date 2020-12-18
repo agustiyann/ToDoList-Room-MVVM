@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.masscode.simpletodolist.ui.HomeFragment"
+        android:name="com.masscode.simpletodolist.ui.home.HomeFragment"
         android:label="Your To Do List"
         tools:layout="@layout/fragment_home">
         <action
@@ -23,12 +23,12 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.masscode.simpletodolist.ui.AddFragment"
+        android:name="com.masscode.simpletodolist.ui.add.AddFragment"
         android:label="Add Your Task"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.masscode.simpletodolist.ui.EditFragment"
+        android:name="com.masscode.simpletodolist.ui.edit.EditFragment"
         android:label="@string/edit_task"
         tools:layout="@layout/fragment_edit">
         <argument

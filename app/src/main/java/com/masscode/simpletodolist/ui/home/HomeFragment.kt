@@ -1,4 +1,4 @@
-package com.masscode.simpletodolist.ui
+package com.masscode.simpletodolist.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.adapter.ListAdapter
 import com.masscode.simpletodolist.databinding.FragmentHomeBinding
+import com.masscode.simpletodolist.utils.hideKeyboard
 import com.masscode.simpletodolist.utils.shortToast
-import com.masscode.simpletodolist.viewmodel.HomeViewModel
-import com.masscode.simpletodolist.viewmodel.HomeViewModelFactory
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 import com.masscode.simpletodolist.viewmodel.TodoViewModelFactory
 import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
@@ -33,13 +32,20 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapter: ListAdapter
 
-    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater)
+        setHasOptionsMenu(true)
+        activity?.hideKeyboard()
+        return binding.root
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(
             requireActivity(),
@@ -77,10 +83,6 @@ class HomeFragment : Fragment() {
                 binding.noDataText.visibility = View.GONE
             }
         })
-
-        setHasOptionsMenu(true)
-
-        return binding.root
     }
 
     private fun setupRecyclerview() {
