@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.masscode.simpletodolist.database.Todo
+import com.masscode.simpletodolist.data.source.local.entity.Todo
 
 class EditViewModel(todo: Todo) : ViewModel() {
 

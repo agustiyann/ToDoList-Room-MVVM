@@ -6,7 +6,7 @@
 
         <variable
             name="todo"
-            type="com.masscode.simpletodolist.database.Todo" />
+            type="com.masscode.simpletodolist.data.source.local.entity.Todo" />
 
         <variable
             name="viewModel"
@@ -64,6 +64,8 @@
                     android:id="@+id/title"
                     style="@style/textTitle"
                     android:layout_width="0dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:layout_height="wrap_content"
                     android:strikeThrough="@{todo.checked}"
                     android:text="@{todo.title}"
@@ -77,6 +79,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="10"
                     android:strikeThrough="@{todo.checked}"
                     android:text="@{todo.description}"
                     app:layout_constraintEnd_toEndOf="@+id/title"

@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_edit">
         <argument
             android:name="todo"
-            app:argType="com.masscode.simpletodolist.database.Todo"
+            app:argType="com.masscode.simpletodolist.data.source.local.entity.Todo"
             app:nullable="true" />
     </fragment>
 </navigation>

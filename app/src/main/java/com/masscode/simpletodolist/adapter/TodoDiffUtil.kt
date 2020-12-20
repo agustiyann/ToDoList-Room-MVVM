@@ -1,7 +1,7 @@
 package com.masscode.simpletodolist.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.masscode.simpletodolist.database.Todo
+import com.masscode.simpletodolist.data.source.local.entity.Todo
 
 class TodoDiffUtil(
     private val oldList: List<Todo>,

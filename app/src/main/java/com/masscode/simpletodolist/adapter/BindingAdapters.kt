@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
-import com.masscode.simpletodolist.database.Todo
+import com.masscode.simpletodolist.data.source.local.entity.Todo
 import com.masscode.simpletodolist.ui.home.HomeFragmentDirections
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 

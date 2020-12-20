@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.masscode.simpletodolist.R
-import com.masscode.simpletodolist.database.Todo
+import com.masscode.simpletodolist.data.source.local.entity.Todo
 import com.masscode.simpletodolist.databinding.ItemTodoBinding
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 

@@ -1,4 +1,4 @@
-package com.masscode.simpletodolist.database
+package com.masscode.simpletodolist.data.source.local.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -2,10 +2,10 @@ package com.masscode.simpletodolist.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.masscode.simpletodolist.database.Todo
-import com.masscode.simpletodolist.database.TodoDAO
-import com.masscode.simpletodolist.database.TodoDb
-import com.masscode.simpletodolist.database.TodoRepository
+import com.masscode.simpletodolist.data.source.local.entity.Todo
+import com.masscode.simpletodolist.data.source.local.room.TodoDAO
+import com.masscode.simpletodolist.data.source.local.room.TodoDb
+import com.masscode.simpletodolist.data.repository.TodoRepository
 import kotlinx.coroutines.launch
 
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
