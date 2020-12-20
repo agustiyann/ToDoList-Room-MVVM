@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.masscode.simpletodolist.ui.edit.EditViewModel" />
+            name="todo"
+            type="com.masscode.simpletodolist.data.source.local.entity.Todo" />
 
     </data>
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
-                android:text="@{viewModel.todo.title}"
+                android:text="@{todo.title}"
                 android:textColor="@color/colorText" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:gravity="start"
                 android:inputType="textCapSentences|textMultiLine"
-                android:text="@{viewModel.todo.description}"
+                android:text="@{todo.description}"
                 android:textColor="@color/colorText" />
 
         </com.google.android.material.textfield.TextInputLayout>

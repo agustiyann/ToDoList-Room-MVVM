@@ -53,20 +53,19 @@ class HomeFragment : Fragment() {
         mLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         adapter = ListAdapter(viewModel)
 
-        val date = Calendar.getInstance().time
+        val mDate = Calendar.getInstance().time
         val formatter = SimpleDateFormat("EEEE, MMM dd yyyy")
-        val currentDate = formatter.format(date)
+        val currentDate = formatter.format(mDate)
 
-        val vmFactory = HomeViewModelFactory(currentDate)
-        binding.viewModel = ViewModelProvider(this, vmFactory).get(HomeViewModel::class.java)
-        binding.lifecycleOwner = this
+        binding.apply {
+            date.text = currentDate
+            addTaskBtn.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
+            )
+        }
 
         // Setup RecyclerView
         setupRecyclerview()
-
-        binding.addTaskBtn.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
-        )
 
         viewModel.getAllTodos().observe(viewLifecycleOwner, { list ->
             adapter.setData(list)

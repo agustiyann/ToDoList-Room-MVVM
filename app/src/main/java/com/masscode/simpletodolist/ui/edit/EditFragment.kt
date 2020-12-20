@@ -26,14 +26,11 @@ class EditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val mTodo = EditFragmentArgs.fromBundle(requireArguments()).todo
         // Inflate the layout for this fragment
-        binding = FragmentEditBinding.inflate(inflater)
-
-        val todo = EditFragmentArgs.fromBundle(requireArguments()).todo
-
-        val vmFactory = EditViewModelFactory(todo!!)
-        binding.viewModel = ViewModelProvider(this, vmFactory).get(EditViewModel::class.java)
-        binding.lifecycleOwner = this
+        binding = FragmentEditBinding.inflate(inflater).apply {
+            todo = mTodo
+        }
 
         val viewModelFactory = TodoViewModelFactory.getInstance(requireContext())
         todoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
@@ -43,7 +40,7 @@ class EditFragment : Fragment() {
             val updatedDesc = binding.description.text.toString()
 
             if (updatedTitle.isNotBlank() && updatedDesc.isNotBlank()) {
-                todoViewModel.updateTodo(todo.id, updatedTitle, updatedDesc, todo.checked)
+                todoViewModel.updateTodo(mTodo!!.id, updatedTitle, updatedDesc, mTodo.checked)
                 activity?.hideKeyboard()
                 findNavController().popBackStack()
             } else {
