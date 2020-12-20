@@ -1,26 +1,38 @@
 package com.masscode.simpletodolist.data.repository
 
+import androidx.lifecycle.LiveData
+import com.masscode.simpletodolist.data.source.local.LocalDataSource
 import com.masscode.simpletodolist.data.source.local.entity.Todo
-import com.masscode.simpletodolist.data.source.local.room.TodoDAO
 
-class TodoRepository(private val TodoDAO: TodoDAO) {
+class TodoRepository(private val localDataSource: LocalDataSource) : ITodoRepository {
 
-    val allTodos = TodoDAO.loadTodos()
+    companion object {
+        @Volatile
+        private var instance: TodoRepository? = null
 
-    suspend fun insert(todo: Todo) {
-        TodoDAO.insertTodo(todo)
+        fun getInstance(localData: LocalDataSource): TodoRepository =
+            instance ?: synchronized(this) {
+                instance ?: TodoRepository(localData)
+            }
     }
 
-    suspend fun update(todo: Todo) {
-        TodoDAO.updateTodo(todo)
+    override fun getAllTodos(): LiveData<List<Todo>> {
+        return localDataSource.getAllTodos()
     }
 
-    suspend fun deleteSelectedTodos() {
-        TodoDAO.deleteSelectedTodos()
+    override suspend fun insert(todo: Todo) {
+        localDataSource.insert(todo)
     }
 
-    suspend fun clearTodos() {
-        TodoDAO.clearTodos()
+    override suspend fun update(todo: Todo) {
+        localDataSource.update(todo)
     }
 
+    override suspend fun deleteSelectedTodos() {
+        localDataSource.deleteSelectedTodos()
+    }
+
+    override suspend fun clearTodos() {
+        localDataSource.clearTodos()
+    }
 }

@@ -35,12 +35,8 @@ class EditFragment : Fragment() {
         binding.viewModel = ViewModelProvider(this, vmFactory).get(EditViewModel::class.java)
         binding.lifecycleOwner = this
 
-        todoViewModel = ViewModelProvider(
-            requireActivity(),
-            TodoViewModelFactory(
-                requireActivity().application
-            )
-        ).get(TodoViewModel::class.java)
+        val viewModelFactory = TodoViewModelFactory.getInstance(requireContext())
+        todoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         binding.submitButton.setOnClickListener {
             val updatedTitle = binding.title.text.toString()

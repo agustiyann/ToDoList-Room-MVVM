@@ -1,26 +1,18 @@
 package com.masscode.simpletodolist.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.*
-import com.masscode.simpletodolist.data.source.local.entity.Todo
-import com.masscode.simpletodolist.data.source.local.room.TodoDAO
-import com.masscode.simpletodolist.data.source.local.room.TodoDb
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.masscode.simpletodolist.data.repository.TodoRepository
+import com.masscode.simpletodolist.data.source.local.entity.Todo
+import com.masscode.simpletodolist.di.Injection
 import kotlinx.coroutines.launch
 
-class TodoViewModel(application: Application) : AndroidViewModel(application) {
-    // add repository
-    private val repository: TodoRepository
-    private val todoDAO: TodoDAO = TodoDb.getInstance(application).todoDAO()
+class TodoViewModel(private val repository: TodoRepository): ViewModel() {
 
-    private var _todos: LiveData<List<Todo>>
-    val todos: LiveData<List<Todo>>
-        get() = _todos
-
-    init {
-        repository = TodoRepository(todoDAO)
-        _todos = repository.allTodos
-    }
+    fun getAllTodos(): LiveData<List<Todo>> = repository.getAllTodos()
 
     fun addTodo(title: String, desc: String) {
         viewModelScope.launch {
@@ -48,9 +40,20 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 @Suppress("UNCHECKED_CAST")
-class TodoViewModelFactory(private val application: Application) :
-    ViewModelProvider.AndroidViewModelFactory(application) {
+class TodoViewModelFactory(private val mTodoRepository: TodoRepository) :
+    ViewModelProvider.NewInstanceFactory() {
+
+    companion object {
+        @Volatile
+        private var instance: TodoViewModelFactory? = null
+
+        fun getInstance(context: Context): TodoViewModelFactory =
+            instance ?: synchronized(this) {
+                instance ?: TodoViewModelFactory(Injection.provideRepository(context))
+            }
+    }
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return TodoViewModel(application) as T
+        return TodoViewModel(mTodoRepository) as T
     }
 }

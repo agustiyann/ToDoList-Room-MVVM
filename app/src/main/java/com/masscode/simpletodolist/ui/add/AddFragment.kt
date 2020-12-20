@@ -28,13 +28,8 @@ class AddFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAddBinding.inflate(inflater)
-
-        todoViewModel = ViewModelProvider(
-            requireActivity(),
-            TodoViewModelFactory(
-                requireActivity().application
-            )
-        ).get(TodoViewModel::class.java)
+        val viewModelFactory = TodoViewModelFactory.getInstance(requireContext())
+        todoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         binding.submitButton.setOnClickListener {
             val title = binding.title.text.toString()

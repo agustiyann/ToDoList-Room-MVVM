@@ -47,12 +47,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            TodoViewModelFactory(
-                requireActivity().application
-            )
-        ).get(TodoViewModel::class.java)
+        val viewModelFactory = TodoViewModelFactory.getInstance(requireContext())
+        viewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         mLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         adapter = ListAdapter(viewModel)
@@ -72,7 +68,7 @@ class HomeFragment : Fragment() {
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
         )
 
-        viewModel.todos.observe(viewLifecycleOwner, { list ->
+        viewModel.getAllTodos().observe(viewLifecycleOwner, { list ->
             adapter.setData(list)
 
             if (list.isEmpty()) {
