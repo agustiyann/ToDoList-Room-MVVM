@@ -13,4 +13,6 @@
     <string name="submit">Submit</string>
     <string name="update">Update</string>
     <string name="fill_all_fields">Please fill out all fields</string>
+    <string name="total_task">Total Task</string>
+    <string name="completed">Completed</string>
 </resources>

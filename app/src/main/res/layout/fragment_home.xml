@@ -58,7 +58,7 @@
                         style="@style/textBase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Task" />
+                        android:text="@string/total_task" />
 
                     <TextView
                         android:id="@+id/total_task"
@@ -80,7 +80,7 @@
                         style="@style/textBase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Completed" />
+                        android:text="@string/completed" />
 
                     <TextView
                         android:id="@+id/completed"
@@ -100,7 +100,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:clipToPadding="false"
             android:paddingHorizontal="8dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
