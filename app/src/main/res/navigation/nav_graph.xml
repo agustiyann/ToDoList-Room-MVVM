@@ -14,12 +14,16 @@
             android:id="@+id/action_homeFragment_to_addFragment"
             app:destination="@id/addFragment"
             app:enterAnim="@anim/animation_from_bottom"
-            app:exitAnim="@anim/animation_leave_from_top" />
+            app:exitAnim="@anim/animation_leave_from_top"
+            app:popEnterAnim="@anim/animation_from_top"
+            app:popExitAnim="@anim/animation_leave_from_bottom" />
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment"
             app:enterAnim="@anim/animation_from_bottom"
-            app:exitAnim="@anim/animation_leave_from_top" />
+            app:exitAnim="@anim/animation_leave_from_top"
+            app:popEnterAnim="@anim/animation_from_top"
+            app:popExitAnim="@anim/animation_leave_from_bottom" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
