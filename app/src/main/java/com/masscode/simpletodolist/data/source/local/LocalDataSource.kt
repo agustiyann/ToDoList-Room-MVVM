@@ -15,6 +15,8 @@ class LocalDataSource private constructor(private val todoDAO: TodoDAO) {
 
     fun getAllTodos(): LiveData<List<Todo>> = todoDAO.loadTodos()
 
+    fun getAllCompleted(): LiveData<List<Todo>> = todoDAO.loadCompleted()
+
     suspend fun insert(todo: Todo) = todoDAO.insertTodo(todo)
 
     suspend fun update(todo: Todo) = todoDAO.updateTodo(todo)

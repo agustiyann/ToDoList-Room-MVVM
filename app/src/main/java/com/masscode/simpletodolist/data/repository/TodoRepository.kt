@@ -20,6 +20,10 @@ class TodoRepository(private val localDataSource: LocalDataSource) : ITodoReposi
         return localDataSource.getAllTodos()
     }
 
+    override fun getAllCompleted(): LiveData<List<Todo>> {
+        return localDataSource.getAllCompleted()
+    }
+
     override suspend fun insert(todo: Todo) {
         localDataSource.insert(todo)
     }

@@ -7,6 +7,8 @@ interface ITodoRepository {
 
     fun getAllTodos(): LiveData<List<Todo>>
 
+    fun getAllCompleted(): LiveData<List<Todo>>
+
     suspend fun insert(todo: Todo)
 
     suspend fun update(todo: Todo)

@@ -24,8 +24,6 @@
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/colorCard"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:cardMaxElevation="4dp"
             app:cardUseCompatPadding="true"
             app:strokeColor="@color/colorBorder"
             app:strokeWidth="1dp">

@@ -33,8 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ListAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater)
@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         binding.apply {
             date.text = currentDate
             addTaskBtn.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
+                    Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_addFragment)
             )
         }
 
@@ -73,10 +73,17 @@ class HomeFragment : Fragment() {
             if (list.isEmpty()) {
                 binding.noDataImage.visibility = View.VISIBLE
                 binding.noDataText.visibility = View.VISIBLE
+                binding.totalTask.text = "0"
             } else {
                 binding.noDataImage.visibility = View.GONE
                 binding.noDataText.visibility = View.GONE
+                binding.totalTask.text = list.size.toString()
             }
+        })
+
+        viewModel.getAllCompleted().observe(viewLifecycleOwner, { list ->
+            if (list.isNotEmpty()) binding.completed.text = list.size.toString()
+            else binding.completed.text = "0"
         })
     }
 
@@ -84,7 +91,7 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.rvTodo
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.itemAnimator = FadeInUpAnimator().apply {
             addDuration = 100
         }

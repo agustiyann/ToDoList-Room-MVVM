@@ -14,6 +14,8 @@ class TodoViewModel(private val repository: TodoRepository): ViewModel() {
 
     fun getAllTodos(): LiveData<List<Todo>> = repository.getAllTodos()
 
+    fun getAllCompleted(): LiveData<List<Todo>> = repository.getAllCompleted()
+
     fun addTodo(title: String, desc: String) {
         viewModelScope.launch {
             repository.insert(Todo(0, title, desc, false))

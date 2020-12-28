@@ -9,6 +9,9 @@ interface TodoDAO {
     @Query("SELECT * FROM todo")
     fun loadTodos(): LiveData<List<Todo>>
 
+    @Query("SELECT * FROM todo WHERE checked = 1")
+    fun loadCompleted(): LiveData<List<Todo>>
+
     @Insert
     suspend fun insertTodo(todo: Todo)
 
