@@ -2,6 +2,7 @@ package com.masscode.simpletodolist.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -27,6 +28,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: TodoViewModel
+
+    var totalTask: Int = 0
+    var completeTask: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,11 +64,26 @@ class HomeFragment : Fragment() {
         viewModel.getAllTodos().observe(viewLifecycleOwner, { list ->
             if (list.isEmpty()) binding.totalTask.text = "0"
             else binding.totalTask.text = list.size.toString()
+
+            totalTask = list.size
+
+            viewModel.getAllCompleted().observe(viewLifecycleOwner, { list ->
+                if (list.isNotEmpty()) binding.completed.text = list.size.toString()
+                else binding.completed.text = "0"
+
+                completeTask = list.size
+                updateChart(completeTask, totalTask)
+            })
         })
 
-        viewModel.getAllCompleted().observe(viewLifecycleOwner, { list ->
-            if (list.isNotEmpty()) binding.completed.text = list.size.toString()
-            else binding.completed.text = "0"
-        })
+    }
+
+    private fun updateChart(completeTask: Int, totalTask: Int) {
+        val double: Double = completeTask.toDouble() / totalTask.toDouble()
+        val progress: Int = (double * 100).toInt()
+
+        binding.pieChart.statsProgressbar.progress = progress
+        Log.d("NUM", "Total progress $progress")
+        binding.pieChart.numberOfTask.text = "$progress %\nCompleted"
     }
 }

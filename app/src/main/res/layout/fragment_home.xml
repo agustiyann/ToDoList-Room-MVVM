@@ -48,37 +48,14 @@
                 android:padding="8dp"
                 android:weightSum="2">
 
+                <!-- Complete Count -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/textBase"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/total_task"
-                            android:textSize="20sp"
-                            app:drawableStartCompat="@drawable/ic_list_bulleted" />
-
-                        <TextView
-                            android:id="@+id/total_task"
-                            style="@style/textTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp"
-                            tools:text="10" />
-
-                    </LinearLayout>
-
+                    <!-- Completed -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,14 +81,82 @@
 
                     </LinearLayout>
 
+                    <!-- Total Task -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textBase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_task"
+                            android:textSize="20sp"
+                            app:drawableStartCompat="@drawable/ic_list_bulleted" />
+
+                        <TextView
+                            android:id="@+id/total_task"
+                            style="@style/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            tools:text="10" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
+                <!-- Priority Count -->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/see_all_button"
                     android:layout_width="match_parent"
+                    android:layout_marginHorizontal="8dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="See All Task" />
+                    android:text="@string/see_all_task" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="@color/colorCard"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_statistic"
+            app:strokeColor="@color/colorBorder"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp">
+
+                <TextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/percentage"
+                    android:textAlignment="center" />
+
+                <include
+                    android:id="@+id/pie_chart"
+                    layout="@layout/layout_pie_chart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 

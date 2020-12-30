@@ -15,4 +15,6 @@
     <string name="fill_all_fields">Please fill out all fields</string>
     <string name="total_task">Total Task</string>
     <string name="completed">Completed</string>
+    <string name="see_all_task">See All Task</string>
+    <string name="percentage">Percentage</string>
 </resources>
