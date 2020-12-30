@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import com.masscode.simpletodolist.data.source.local.entity.Todo
 import com.masscode.simpletodolist.ui.home.HomeFragmentDirections
+import com.masscode.simpletodolist.ui.list.ListFragmentDirections
 import com.masscode.simpletodolist.viewmodel.TodoViewModel
 
 @BindingAdapter(value = ["todo", "vm"])
@@ -50,6 +51,6 @@ fun isStriked(textView: TextView, isCheck: Boolean) {
 fun goToEditFragment(imageView: ImageView, todo: Todo) {
     imageView.setOnClickListener { view ->
         view.findNavController()
-            .navigate(HomeFragmentDirections.actionHomeFragmentToEditFragment(todo))
+            .navigate(ListFragmentDirections.actionListFragmentToEditFragment(todo))
     }
 }

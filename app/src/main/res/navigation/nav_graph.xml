@@ -11,15 +11,8 @@
         android:label="Your To Do List"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_addFragment"
-            app:destination="@id/addFragment"
-            app:enterAnim="@anim/animation_from_bottom"
-            app:exitAnim="@anim/animation_leave_from_top"
-            app:popEnterAnim="@anim/animation_from_top"
-            app:popExitAnim="@anim/animation_leave_from_bottom" />
-        <action
-            android:id="@+id/action_homeFragment_to_editFragment"
-            app:destination="@id/editFragment"
+            android:id="@+id/action_homeFragment_to_listFragment"
+            app:destination="@id/listFragment"
             app:enterAnim="@anim/animation_from_bottom"
             app:exitAnim="@anim/animation_leave_from_top"
             app:popEnterAnim="@anim/animation_from_top"
@@ -39,5 +32,25 @@
             android:name="todo"
             app:argType="com.masscode.simpletodolist.data.source.local.entity.Todo"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.masscode.simpletodolist.ui.list.ListFragment"
+        android:label="My To Do List"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:enterAnim="@anim/animation_from_bottom"
+            app:exitAnim="@anim/animation_leave_from_top"
+            app:popEnterAnim="@anim/animation_from_top"
+            app:popExitAnim="@anim/animation_leave_from_bottom" />
+        <action
+            android:id="@+id/action_listFragment_to_editFragment"
+            app:destination="@id/editFragment"
+            app:enterAnim="@anim/animation_from_bottom"
+            app:exitAnim="@anim/animation_leave_from_top"
+            app:popEnterAnim="@anim/animation_from_top"
+            app:popExitAnim="@anim/animation_leave_from_bottom" />
     </fragment>
 </navigation>
