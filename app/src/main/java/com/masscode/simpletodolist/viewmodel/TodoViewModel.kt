@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.masscode.simpletodolist.data.model.Priority
 import com.masscode.simpletodolist.data.repository.TodoRepository
 import com.masscode.simpletodolist.data.source.local.entity.Todo
 import com.masscode.simpletodolist.di.Injection
@@ -16,15 +17,15 @@ class TodoViewModel(private val repository: TodoRepository): ViewModel() {
 
     fun getAllCompleted(): LiveData<List<Todo>> = repository.getAllCompleted()
 
-    fun addTodo(title: String, desc: String) {
+    fun addTodo(title: String, desc: String, priority: Priority) {
         viewModelScope.launch {
-            repository.insert(Todo(0, title, desc, false))
+            repository.insert(Todo(0, title, desc, false, priority))
         }
     }
 
-    fun updateTodo(id: Int, title: String, desc: String, checked: Boolean) {
+    fun updateTodo(id: Int, title: String, desc: String, checked: Boolean, priority: Priority) {
         viewModelScope.launch {
-            repository.update(Todo(id, title, desc, checked))
+            repository.update(Todo(id, title, desc, checked, priority))
         }
     }
 

@@ -24,4 +24,8 @@ class LocalDataSource private constructor(private val todoDAO: TodoDAO) {
     suspend fun deleteSelectedTodos() = todoDAO.deleteSelectedTodos()
 
     suspend fun clearTodos() = todoDAO.clearTodos()
+
+    fun sortByHighPriority(): LiveData<List<Todo>> = todoDAO.sortByHighPriority()
+
+    fun sortByLowPriority(): LiveData<List<Todo>> = todoDAO.sortByLowPriority()
 }

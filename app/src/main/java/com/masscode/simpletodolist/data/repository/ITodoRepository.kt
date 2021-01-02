@@ -16,4 +16,8 @@ interface ITodoRepository {
     suspend fun deleteSelectedTodos()
 
     suspend fun clearTodos()
+
+    fun sortByHighPriority(): LiveData<List<Todo>>
+
+    fun sortByLowPriority(): LiveData<List<Todo>>
 }

@@ -1,12 +1,12 @@
 package com.masscode.simpletodolist.data.source.local.room
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.masscode.simpletodolist.data.source.local.entity.Todo
+import com.masscode.simpletodolist.ui.list.Converter
 
-@Database(version = 1, entities = [Todo::class])
+@Database(version = 1, entities = [Todo::class], exportSchema = false)
+@TypeConverters(Converter::class)
 abstract class TodoDb : RoomDatabase() {
 
     abstract fun todoDAO(): TodoDAO

@@ -17,4 +17,11 @@
     <string name="completed">Completed</string>
     <string name="see_all_task">See All Task</string>
     <string name="percentage">Percentage</string>
+    <string name="priority">Priority</string>
+
+    <string-array name="priorities">
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+    </string-array>
 </resources>

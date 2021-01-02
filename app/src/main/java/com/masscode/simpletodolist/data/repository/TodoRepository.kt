@@ -39,4 +39,12 @@ class TodoRepository(private val localDataSource: LocalDataSource) : ITodoReposi
     override suspend fun clearTodos() {
         localDataSource.clearTodos()
     }
+
+    override fun sortByHighPriority(): LiveData<List<Todo>> {
+        return localDataSource.sortByHighPriority()
+    }
+
+    override fun sortByLowPriority(): LiveData<List<Todo>> {
+        return localDataSource.sortByLowPriority()
+    }
 }

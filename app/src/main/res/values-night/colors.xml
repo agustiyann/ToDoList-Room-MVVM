@@ -9,6 +9,9 @@
     <color name="colorBorder">#30363D</color>
     <color name="colorToolbar">#0D1117</color>
     <color name="colorGreen">#2ecc71</color>
+    <color name="red">#FF4646</color>
+    <color name="yellow">#FFC114</color>
+    <color name="green">#00C980</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#30363D</color>
 </resources>

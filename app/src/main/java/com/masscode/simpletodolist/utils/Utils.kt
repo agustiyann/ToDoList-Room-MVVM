@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import com.masscode.simpletodolist.data.model.Priority
 
 fun Activity.hideKeyboard() {
     val inputMethodManager =
@@ -19,3 +20,12 @@ fun Activity.hideKeyboard() {
 }
 
 fun Context.shortToast(message: String) = Toast.makeText(this, message, LENGTH_SHORT).show()
+
+fun parsePriority(priority: String): Priority {
+    return when(priority){
+        "High Priority" -> { Priority.HIGH }
+        "Medium Priority" -> { Priority.MEDIUM }
+        "Low Priority" -> { Priority.LOW }
+        else -> Priority.LOW
+    }
+}
