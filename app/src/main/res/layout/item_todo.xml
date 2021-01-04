@@ -31,8 +31,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:layout_height="wrap_content">
 
                 <CheckBox
                     android:id="@+id/checkbox_todo"
@@ -40,16 +39,31 @@
                     vm="@{viewModel}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:buttonTint="@color/colorText"
                     android:text="@null"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/edit_button"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:parsePriorityColor="@{todo.priority}"
+                    app:cardBackgroundColor="@color/red"
+                    app:cardCornerRadius="100dp"
+                    app:layout_constraintBottom_toTopOf="@+id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/checkbox_todo" />
 
                 <TextView
                     android:id="@+id/title"
                     style="@style/textTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:strikeThrough="@{todo.checked}"
@@ -63,12 +77,16 @@
                     style="@style/textBase"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
                     android:ellipsize="end"
                     android:maxLines="10"
                     android:strikeThrough="@{todo.checked}"
                     android:text="@{todo.description}"
-                    app:layout_constraintEnd_toEndOf="@+id/title"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title" />
 
