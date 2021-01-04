@@ -50,8 +50,8 @@ fun isStriked(textView: TextView, isCheck: Boolean) {
 }
 
 @BindingAdapter("android:goToEdit")
-fun goToEditFragment(imageView: ImageView, todo: Todo) {
-    imageView.setOnClickListener { view ->
+fun goToEditFragment(view: LinearLayout, todo: Todo) {
+    view.setOnClickListener { view ->
         view.findNavController()
             .navigate(ListFragmentDirections.actionListFragmentToEditFragment(todo))
     }
