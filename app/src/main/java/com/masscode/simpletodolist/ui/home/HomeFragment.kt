@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.masscode.simpletodolist.R
 import com.masscode.simpletodolist.adapter.ListAdapter
 import com.masscode.simpletodolist.databinding.FragmentHomeBinding
@@ -88,12 +89,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerview() {
-        val recyclerView = binding.rvTodo
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.itemAnimator = FadeInUpAnimator().apply {
-            addDuration = 100
+        with(binding.rvTodo) {
+            adapter = adapter
+            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+            itemAnimator = FadeInUpAnimator().apply {
+                addDuration = 100
+            }
         }
     }
 
@@ -121,35 +122,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun showDialog(delete: String) {
-        if (delete == "selected") {
+        when (delete) {
+            "selected" -> {
+                AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
+                    setTitle(getString(R.string.delete_checked_lists))
+                    setMessage(getString(R.string.all_delete_are_you_sure))
+                    setPositiveButton(getString(R.string.yes)) { _, _ ->
+                        viewModel.deleteSelected()
 
-            AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
-                setTitle("Delete Checked Lists")
-                setMessage("All checked lists will be deleted. Are you sure?")
-                setPositiveButton("Yes") { _, _ ->
-                    viewModel.deleteSelected()
+                        context.shortToast(getString(R.string.toast_all_deleted))
+                    }
+                    setNegativeButton(getString(R.string.no)) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                }.create().show()
+            }
+            "all" -> {
+                AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
+                    setTitle(getString(R.string.clear_lists))
+                    setMessage(getString(R.string.all_list_deleted_warning))
+                    setPositiveButton(getString(R.string.yes)) { _, _ ->
+                        viewModel.clearTodos()
 
-                    context.shortToast("All checked lists have been deleted.")
-                }
-                setNegativeButton("No") { dialog, _ ->
-                    dialog.cancel()
-                }
-            }.create().show()
-
-        } else if (delete == "all") {
-
-            AlertDialog.Builder(requireContext(), R.style.MyDialogTheme).apply {
-                setTitle("Clear Lists")
-                setMessage("All lists will be deleted. Are you sure?")
-                setPositiveButton("Yes") { _, _ ->
-                    viewModel.clearTodos()
-
-                    context.shortToast("All lists have been deleted. Add your To Do!")
-                }
-                setNegativeButton("No") { dialog, _ ->
-                    dialog.cancel()
-                }
-            }.create().show()
+                        context.shortToast(getString(R.string.all_deleted_add_todo))
+                    }
+                    setNegativeButton(getString(R.string.no)) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                }.create().show()
+            }
         }
     }
 

@@ -15,4 +15,12 @@
     <string name="fill_all_fields">Please fill out all fields</string>
     <string name="total_task">Total Task</string>
     <string name="completed">Completed</string>
+    <string name="delete_checked_lists">Delete Checked Lists</string>
+    <string name="all_delete_are_you_sure">All checked lists will be deleted. Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="toast_all_deleted">All checked lists have been deleted.</string>
+    <string name="no">No</string>
+    <string name="clear_lists">Clear Lists</string>
+    <string name="all_list_deleted_warning">All lists will be deleted. Are you sure?</string>
+    <string name="all_deleted_add_todo">All lists have been deleted. Add your To Do!</string>
 </resources>
