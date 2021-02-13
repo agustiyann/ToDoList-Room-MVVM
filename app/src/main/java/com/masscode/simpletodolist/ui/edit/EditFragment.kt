@@ -19,21 +19,18 @@ import com.masscode.simpletodolist.viewmodel.TodoViewModelFactory
  */
 class EditFragment : Fragment() {
 
-    private lateinit var binding: FragmentEditBinding
-    private lateinit var todoViewModel: TodoViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val mTodo = EditFragmentArgs.fromBundle(requireArguments()).todo
         // Inflate the layout for this fragment
-        binding = FragmentEditBinding.inflate(inflater).apply {
+        val binding = FragmentEditBinding.inflate(inflater).apply {
             todo = mTodo
         }
 
         val viewModelFactory = TodoViewModelFactory.getInstance(requireContext())
-        todoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
+        val todoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         binding.submitButton.setOnClickListener {
             val updatedTitle = binding.title.text.toString()
